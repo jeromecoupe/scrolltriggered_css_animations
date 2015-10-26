@@ -3,7 +3,7 @@ var cssanimations = (function () {
   'use strict';
 
   var timer = Date.now();
-  var scrollInterval = 200;
+  var scrollInterval = 150; //miliseconds
   var activeAnimationClass = "js-animate--active";
   var animatedElements = document.querySelectorAll(".js-animate");
 
