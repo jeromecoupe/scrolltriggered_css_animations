@@ -1,6 +1,7 @@
 .page
 {
-  width: 700px;
+  width: 90%;
+  max-width: 700px;
   margin: 0 auto;
 
   overflow: hidden; /* hides offscreen animations */
@@ -73,7 +74,7 @@ slide in from bottom
   0%
   {
     opacity: 0;
-    transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 50px, 0);
   }
 
   100%
@@ -97,7 +98,7 @@ slide in from top
   0%
   {
     opacity: 0;
-    transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -50px;, 0);
   }
 
   100%

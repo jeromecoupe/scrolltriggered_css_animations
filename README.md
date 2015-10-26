@@ -24,3 +24,7 @@ Add a `.js-animate` class to any element you wish to animate and provide a `data
 All animation classes are added via JS so elements will be displayed statically on the page if JS is not available.
 
 All animations play state are set to `paused` by default. They are switched to `running` via a `.js-animate--active` added via JS upon scroll and when the animated element is entirely displayed in the viewport.
+
+## Demo
+
+Here is a [small demo](http://jeromecoupe.github.com/) (to be updated)
