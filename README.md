@@ -27,4 +27,4 @@ All animations play state are set to `paused` by default. They are switched to `
 
 ## Demo
 
-Here is a [small demo](http://jeromecoupe.github.com/) (to be updated)
+Here is a [small demo](http://jeromecoupe.github.com/onscroll_css_animations) (to be updated)
