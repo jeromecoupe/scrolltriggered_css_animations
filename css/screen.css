@@ -1,0 +1,144 @@
+.page
+{
+  width: 700px;
+  margin: 0 auto;
+
+  overflow: hidden; /* hides offscreen animations */
+}
+
+.js-animate
+{
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+  animation-play-state: paused;
+
+  background-color: yellow;
+}
+
+/* ---------------------------------------
+slide in from left
+--------------------------------------- */
+@keyframes slideFromLeft {
+
+  0%
+  {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  100%
+  {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+}
+
+.js-animate--slidefromleft
+{
+  animation-name: slideFromLeft;
+}
+
+/* ---------------------------------------
+slide in from right
+--------------------------------------- */
+@keyframes slideFromRight {
+
+  0%
+  {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+
+  100%
+  {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+}
+
+.js-animate--slidefromright
+{
+  animation-name: slideFromRight;
+}
+
+/* ---------------------------------------
+slide in from bottom
+--------------------------------------- */
+@keyframes slideFromBottom {
+
+  0%
+  {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+
+  100%
+  {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+}
+
+.js-animate--slidefrombottom
+{
+  animation-name: slideFromBottom;
+}
+
+/* ---------------------------------------
+slide in from top
+--------------------------------------- */
+@keyframes slideFromTop {
+
+  0%
+  {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  100%
+  {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+}
+
+.js-animate--slidefromtop
+{
+  animation-name: slideFromTop;
+}
+
+/* ---------------------------------------
+zoom in
+--------------------------------------- */
+@keyframes zoomIn {
+
+  0%
+  {
+    opacity: 0;
+    transform: scale3d(0.5, 0.5, 0.5);
+  }
+
+  100%
+  {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+
+}
+
+.js-animate--zoomin
+{
+  animation-name: zoomIn;
+}
+
+/* activate animations */
+.js-animate--active
+{
+  animation-play-state: running;
+}
