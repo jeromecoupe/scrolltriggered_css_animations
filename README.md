@@ -1,4 +1,4 @@
-# Progressively enhanced CSS animation onScroll
+# Scroll-triggered css animations
 
 In needed to trigger CSS animation onScroll for an upcoming project. I didn't want to rely on jQuery and needed something that would remain usable with JS turned off so I decided to have a shot at it. Here is the result.
 
