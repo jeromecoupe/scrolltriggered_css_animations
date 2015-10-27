@@ -3,7 +3,7 @@ var cssanimations = (function () {
   'use strict';
 
   var timer = Date.now();
-  var scrollInterval = 100; //miliseconds
+  var scrollInterval = 200; //miliseconds
   var activeAnimationClass = "js-animate--active";
   var animatedElements = document.querySelectorAll(".js-animate");
 
@@ -72,9 +72,13 @@ var cssanimations = (function () {
     var rect = el.getBoundingClientRect();
 
     // just checking top and bottom
+    //
+    // if you want animations to start before they are fully in the viewport
+    // multiply rect-bottom by 0.9 or so
+    // or use things like (rect.bottom - (rect.height / 2))
     return (
         rect.top >= 0
-        && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+        && (rect.bottom - (rect.height/2)) <= (window.innerHeight || document.documentElement.clientHeight)
     );
 
   };
