@@ -3,7 +3,7 @@ var cssAnimations = (function () {
   'use strict';
 
   var timer = Date.now();
-  var scrollInterval = 25; //miliseconds
+  var scrollInterval = 50; //miliseconds
   var animationClass = "js-animate";
   var animationActiveClass = "js-animate--active";
   var animatedElements = document.querySelectorAll("[data-animation='animated']");
@@ -19,14 +19,16 @@ var cssAnimations = (function () {
       return;
     }
 
-    // throttled scroll event
-    window.addEventListener('scroll', _throttleScroll, false);
-
     // add inline styles for delayed elements
     _addDelays();
 
     // add animation classes
     _addAnimationClasses();
+
+    window.addEventListener('load', _runAnimations, false);
+
+    // throttled scroll event
+    window.addEventListener('scroll', _throttleScroll, false);
 
   };
 
