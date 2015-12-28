@@ -18,6 +18,11 @@
   background-color: yellow;
 }
 
+.js-animate--active
+{
+  animation-play-state: running;
+}
+
 /* ---------------------------------------
 slide in from left
 --------------------------------------- */
@@ -166,10 +171,4 @@ zoom in
 .js-animate--zoomin
 {
   animation-name: zoomIn;
-}
-
-/* activate animations */
-.js-animate--active
-{
-  animation-play-state: running;
 }
