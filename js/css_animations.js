@@ -2,8 +2,7 @@ var cssAnimations = (function () {
 
   'use strict';
 
-  var timer = Date.now();
-  var scrollInterval = 50; //miliseconds
+  var scrollInterval = 200; //miliseconds
   var animationClass = "js-animate";
   var animationActiveClass = "js-animate--active";
   var animatedElements = document.querySelectorAll("[data-animation='animated']");
@@ -28,7 +27,8 @@ var cssAnimations = (function () {
     window.addEventListener('load', _runAnimations, false);
 
     // throttled scroll event
-    window.addEventListener('scroll', _throttleScroll, false);
+    var animate = _debounce(_runAnimations, scrollInterval);
+    window.addEventListener('scroll', animate, false);
 
   };
 
@@ -70,17 +70,27 @@ var cssAnimations = (function () {
 
   };
 
-  // throttled scroll
-  var _throttleScroll = function() {
+  // debouncing function from John Hann
+  // http://unscriptable.com/index.php/2009/03/20/debouncing-javascript-methods/
+  var _debounce = function (func, threshold, execAsap) {
+    var timeout;
 
-    var scrollTimer = Date.now();
+    return function debounced () {
+      var obj = this, args = arguments;
+      function delayed () {
+        if (!execAsap)
+          func.apply(obj, args);
+        timeout = null;
+      };
 
-    if (scrollTimer - timer >= scrollInterval) {
-      _runAnimations();
-      timer = scrollTimer;
-    }
+      if (timeout)
+        clearTimeout(timeout);
+      else if (execAsap)
+        func.apply(obj, args);
 
-  };
+        timeout = setTimeout(delayed, threshold || 100);
+      };
+  }
 
   // add delay styles in html
   var _addDelays = function() {
