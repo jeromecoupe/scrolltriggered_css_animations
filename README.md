@@ -6,10 +6,9 @@ This is still a Work in Progress to a few things still need to be improved but t
 
 ## Goals
 
-- Throttled scroll
+- Debounced scroll events
 - Animations powered by data attributes
-- All elements on pages if JS is not supported
-- Easy to make compatible with [Animate CSS](http://daneden.github.io/animate.css/)
+- All elements displayed on pages if JS is not supported
 
 ## Usage
 
