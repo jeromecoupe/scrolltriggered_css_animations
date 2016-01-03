@@ -15,7 +15,7 @@
   animation-fill-mode: both;
   animation-play-state: paused;
 
-  background-color: yellow;
+  background-color: yellow; /* remove this in production */
 }
 
 .js-animate--active
