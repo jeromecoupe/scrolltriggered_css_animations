@@ -2,11 +2,11 @@ var cssAnimations = (function () {
 
   'use strict';
 
-  var scrollInterval = 200; //miliseconds
-  var animationClass = "js-animate";
-  var animationActiveClass = "js-animate--active";
-  var animatedElements = document.querySelectorAll("[data-animation='animated']");
-  var delayedElements = document.querySelectorAll("[data-animation-delay");
+  var scrollInterval,
+      animationClass,
+      animationActiveClass,
+      animatedElements,
+      delayedElements;
 
   console.log(animatedElements);
 
@@ -18,15 +18,23 @@ var cssAnimations = (function () {
       return;
     }
 
+    // initiate variables
+    scrollInterval = 200; //miliseconds
+    animationClass = "js-animate";
+    animationActiveClass = "js-animate--active";
+    animatedElements = document.querySelectorAll("[data-animation='animated']");
+    delayedElements = document.querySelectorAll("[data-animation-delay");
+
     // add inline styles for delayed elements
     _addDelays();
 
     // add animation classes
     _addAnimationClasses();
 
+    // run animations for elements in viewport upon page load
     window.addEventListener('load', _runAnimations, false);
 
-    // throttled scroll event
+    // debounced scroll event
     var animate = _debounce(_runAnimations, scrollInterval);
     window.addEventListener('scroll', animate, false);
 
@@ -57,6 +65,8 @@ var cssAnimations = (function () {
 
   };
 
+  // all animations in "running" mode
+  // uses animation-play-state: running;
   var _runAnimations = function () {
 
     for (var i = 0; i < animatedElements.length; i++) {
@@ -73,9 +83,11 @@ var cssAnimations = (function () {
   // debouncing function from John Hann
   // http://unscriptable.com/index.php/2009/03/20/debouncing-javascript-methods/
   var _debounce = function (func, threshold, execAsap) {
+
     var timeout;
 
     return function debounced () {
+
       var obj = this, args = arguments;
       function delayed () {
         if (!execAsap)
@@ -83,13 +95,16 @@ var cssAnimations = (function () {
         timeout = null;
       };
 
-      if (timeout)
+      if (timeout) {
         clearTimeout(timeout);
-      else if (execAsap)
+      } else if (execAsap) {
         func.apply(obj, args);
+      }
 
-        timeout = setTimeout(delayed, threshold || 100);
-      };
+      timeout = setTimeout(delayed, threshold || 100);
+
+    };
+
   }
 
   // add delay styles in html
@@ -123,7 +138,6 @@ var cssAnimations = (function () {
     // if you want animations to start before they are fully in the viewport
     // multiply rect-bottom by 0.9 or so
     // or use things like (rect.bottom - (rect.height / 2))
-    console.log((rect.bottom - rect.height) + "///" +  window.innerHeight);
 
     return (
         rect.top >= 0
