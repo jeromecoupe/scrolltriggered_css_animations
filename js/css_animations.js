@@ -2,13 +2,12 @@ var cssAnimations = (function () {
 
   'use strict';
 
+  // instantiate config variables
   var scrollInterval,
       animationClass,
       animationActiveClass,
       animatedElements,
       delayedElements;
-
-  console.log(animatedElements);
 
   // initiate
   var initiate = function () {
@@ -18,7 +17,7 @@ var cssAnimations = (function () {
       return;
     }
 
-    // initiate variables
+    // populate config variables
     scrollInterval = 200; //miliseconds
     animationClass = "js-animate";
     animationActiveClass = "js-animate--active";
@@ -35,18 +34,16 @@ var cssAnimations = (function () {
     window.addEventListener('load', _runAnimations, false);
 
     // debounced scroll event
-    var animate = _debounce(_runAnimations, scrollInterval);
-    window.addEventListener('scroll', animate, false);
+    var debouncedSrollAnims = _debounce(_runAnimations, scrollInterval, false);
+    window.addEventListener('scroll', debouncedSrollAnims, false);
 
   };
 
   var _cutTheMustard = function () {
 
-    return (
-      'querySelector' in document
-      && 'addEventListener' in window
-      && 'classList' in document.createElement('div')
-    );
+    return ( 'querySelector' in document &&
+             'addEventListener' in window &&
+             'classList' in document.createElement('div') );
 
   };
 
@@ -80,32 +77,6 @@ var cssAnimations = (function () {
 
   };
 
-  // debouncing function from John Hann
-  // http://unscriptable.com/index.php/2009/03/20/debouncing-javascript-methods/
-  var _debounce = function (func, threshold, execAsap) {
-
-    var timeout;
-
-    return function debounced () {
-
-      var obj = this, args = arguments;
-      function delayed () {
-        if (!execAsap)
-          func.apply(obj, args);
-        timeout = null;
-      };
-
-      if (timeout) {
-        clearTimeout(timeout);
-      } else if (execAsap) {
-        func.apply(obj, args);
-      }
-
-      timeout = setTimeout(delayed, threshold || 100);
-
-    };
-
-  }
 
   // add delay styles in html
   var _addDelays = function() {
@@ -139,10 +110,37 @@ var cssAnimations = (function () {
     // multiply rect-bottom by 0.9 or so
     // or use things like (rect.bottom - (rect.height / 2))
 
-    return (
-        rect.top >= 0
-        && (rect.bottom - rect.height) <= (window.innerHeight || document.documentElement.clientHeight)
-    );
+    return ( rect.top >= 0 &&
+             (rect.bottom - rect.height) <= (window.innerHeight || document.documentElement.clientHeight) );
+
+  };
+
+  // debouncing function from John Hann
+  // http://unscriptable.com/index.php/2009/03/20/debouncing-javascript-methods/
+  var _debounce = function (func, threshold, execAsap) {
+
+    var timeout;
+
+    return function debounced () {
+
+      var obj = this, args = arguments;
+
+      function delayed () {
+        if (!execAsap) {
+          func.apply(obj, args);
+        }
+        timeout = null;
+      }
+
+      if (timeout) {
+        clearTimeout(timeout);
+      } else if (execAsap) {
+        func.apply(obj, args);
+      }
+
+      timeout = setTimeout(delayed, threshold || 100);
+
+    };
 
   };
 
