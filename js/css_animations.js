@@ -25,20 +25,21 @@ var cssAnimations = (function () {
     delayedElements = document.querySelectorAll("[data-animation-delay");
 
     // add inline styles for delayed elements
-    _addDelays();
+    _addDelays(delayedElements);
 
     // add animation classes
-    _addAnimationClasses();
+    _addAnimationClasses(animatedElements);
 
     // run animations for elements in viewport upon page load
-    window.addEventListener('load', _runAnimations, false);
+    window.addEventListener('load', _runAnimations(animatedElements), false);
 
     // debounced scroll event
-    var debouncedSrollAnims = _debounce(_runAnimations, scrollInterval, false);
-    window.addEventListener('scroll', debouncedSrollAnims, false);
+    var throttledScroll = _throttle( function(){ _runAnimations(animatedElements) }, scrollInterval, false);
+    window.addEventListener('scroll', throttledScroll, false);
 
   };
 
+  // cust the mustard test
   var _cutTheMustard = function () {
 
     return ( 'querySelector' in document &&
@@ -47,10 +48,11 @@ var cssAnimations = (function () {
 
   };
 
-  var _addAnimationClasses = function () {
+  // add animations classes
+  var _addAnimationClasses = function (elements) {
 
-    for (var i = 0; i < animatedElements.length; i++) {
-      var el = animatedElements[i];
+    for (var i = 0; i < elements.length; i++) {
+      var el = elements[i];
 
       // add base animation class
       el.classList.add(animationClass);
@@ -62,13 +64,14 @@ var cssAnimations = (function () {
 
   };
 
-  // all animations in "running" mode
+
+  // put animations in "running" mode
   // uses animation-play-state: running;
-  var _runAnimations = function () {
+  var _runAnimations = function (elements) {
 
-    for (var i = 0; i < animatedElements.length; i++) {
+    for (var i = 0; i < elements.length; i++) {
 
-      var el = animatedElements[i];
+      var el = elements[i];
 
       if ( _isInViewport(el) && !el.classList.contains(animationActiveClass) ) {
         el.classList.add(animationActiveClass);
@@ -79,11 +82,11 @@ var cssAnimations = (function () {
 
 
   // add delay styles in html
-  var _addDelays = function() {
+  var _addDelays = function(elements) {
 
-    for (var i = 0; i < delayedElements.length; i++) {
+    for (var i = 0; i < elements.length; i++) {
 
-      var el = delayedElements[i];
+      var el = elements[i];
       var delay = el.getAttribute('data-animation-delay');
 
       // vendor prefixes shenanigans
@@ -115,30 +118,54 @@ var cssAnimations = (function () {
 
   };
 
-  // debouncing function from John Hann
-  // http://unscriptable.com/index.php/2009/03/20/debouncing-javascript-methods/
-  var _debounce = function (func, threshold, execAsap) {
+  // debounce function
+  // doesn't execute function again until after threshold has been reached (group events)
+  // https://ict.ken.be/javascript-debounce-vs-throttle-function
+  var _debounce = function (func, threshold) {
 
-    var timeout;
+    var timer = null;
 
-    return function debounced () {
+    return function () {
 
-      var obj = this, args = arguments;
+      var context = this, args = arguments;
+      clearTimeout(timer);
 
-      function delayed () {
-        if (!execAsap) {
-          func.apply(obj, args);
-        }
-        timeout = null;
+      timer = setTimeout(function () {
+        func.apply(context, args);
+      }, threshold);
+
+    };
+
+  };
+
+  // throttle function
+  // diminishes the frequency of function execution using a certain threshold (regulates frequency)
+  // https://ict.ken.be/javascript-debounce-vs-throttle-function
+  var _throttle = function (func, threshold, scope) {
+
+    threshold || (threshold = 250);
+
+    var last, deferTimer;
+
+    return function () {
+
+      var context = scope || this;
+      var now = +new Date, args = arguments;
+      if (last && now < last + threshold) {
+
+        // hold on to it
+        clearTimeout(deferTimer);
+        deferTimer = setTimeout(function () {
+          last = now;
+          func.apply(context, args);
+        }, threshold);
+
+      } else {
+
+        last = now;
+        func.apply(context, args);
+
       }
-
-      if (timeout) {
-        clearTimeout(timeout);
-      } else if (execAsap) {
-        func.apply(obj, args);
-      }
-
-      timeout = setTimeout(delayed, threshold || 100);
 
     };
 

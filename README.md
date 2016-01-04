@@ -6,7 +6,7 @@ This is still a Work in Progress to a few things still need to be improved but t
 
 ## Goals
 
-- Debounced scroll events
+- Throttled scroll events
 - Animations powered by data attributes
 - All elements displayed on pages if JS is not supported
 
