@@ -33,8 +33,8 @@ var cssAnimations = (function () {
     // run animations for elements in viewport upon page load
     window.addEventListener('load', _runAnimations(animatedElements), false);
 
-    // debounced scroll event
-    var throttledScroll = _throttle( function(){ _runAnimations(animatedElements) }, scrollInterval, false);
+    // throttle scroll event
+    var throttledScroll = _throttle( function(){ _runAnimations(animatedElements) }, scrollInterval);
     window.addEventListener('scroll', throttledScroll, false);
 
   };
