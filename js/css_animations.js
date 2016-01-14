@@ -22,7 +22,7 @@ var cssAnimations = (function () {
     animationClass = "js-animate";
     animationActiveClass = "js-animate--active";
     animatedElements = document.querySelectorAll("[data-animation='animated']");
-    delayedElements = document.querySelectorAll("[data-animation-delay");
+    delayedElements = document.querySelectorAll("[data-animation-delay]");
 
     // add inline styles for delayed elements
     _addDelays(delayedElements);
