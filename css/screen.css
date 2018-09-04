@@ -1,174 +1,63 @@
-.page
-{
-  width: 90%;
-  max-width: 700px;
+.page {
   margin: 0 auto;
-
+  padding: 20px;
+  max-width: 1140px;
   overflow: hidden; /* hides offscreen animations */
 }
 
-.js-animate
-{
-  animation-duration: 0.5s;
-  animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+.js-animate-scroll {
+  animation-duration: 1s;
+  animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
   animation-iteration-count: 1;
   animation-fill-mode: both;
-  animation-play-state: paused;
 
-  background-color: yellow; /* remove this in production */
+  background-color: red;
 }
 
-.js-animate--active
-{
+.is-paused {
+  visibility: hidden;
+  animation-play-state: paused;
+}
+
+.is-running {
+  visibility: visible;
   animation-play-state: running;
 }
 
 /* ---------------------------------------
 slide in from left
 --------------------------------------- */
-@keyframes slideFromLeft {
-
-  0%
-  {
+@keyframes slideInLeft {
+  0% {
     opacity: 0;
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(-200px, 0, 0);
   }
 
-  1%
-  {
-    opacity: 0;
-    transform: translate3d(-100%, 0, 0);
-  }
-
-  100%
-  {
+  100% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
-
 }
 
-.js-animate--slidefromleft
-{
-  animation-name: slideFromLeft;
+.js-animate-scroll.js-animate-scroll--left {
+  animation-name: slideInLeft;
 }
 
 /* ---------------------------------------
 slide in from right
 --------------------------------------- */
-@keyframes slideFromRight {
-
-  0%
-  {
+@keyframes slideInRight {
+  0% {
     opacity: 0;
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(200px, 0, 0);
   }
 
-  1%
-  {
-    opacity: 0;
-    transform: translate3d(100%, 0, 0);
-  }
-
-  100%
-  {
+  100% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
-
 }
 
-.js-animate--slidefromright
-{
-  animation-name: slideFromRight;
-}
-
-/* ---------------------------------------
-slide in from bottom
---------------------------------------- */
-@keyframes slideFromBottom {
-
-  0%
-  {
-    opacity: 0;
-    transform: translate3d(0, 0, 0);
-  }
-
-  1%
-  {
-    opacity: 0;
-    transform: translate3d(0, 100%, 0);
-  }
-
-  100%
-  {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-
-}
-
-.js-animate--slidefrombottom
-{
-  animation-name: slideFromBottom;
-}
-
-/* ---------------------------------------
-slide in from top
---------------------------------------- */
-@keyframes slideFromTop {
-
-  0%
-  {
-    opacity: 0;
-    transform: translate3d(0, 0, 0);
-  }
-
-  1%
-  {
-    opacity: 0;
-    transform: translate3d(0, -100%, 0);
-  }
-
-  100%
-  {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-
-}
-
-.js-animate--slidefromtop
-{
-  animation-name: slideFromTop;
-}
-
-/* ---------------------------------------
-zoom in
---------------------------------------- */
-@keyframes zoomIn {
-
-  0%
-  {
-    opacity: 0;
-    transform: scale3d(0, 0, 0);
-  }
-
-  1%
-  {
-    opacity: 0;
-    transform: scale3d(0.5, 0.5, 0.5);
-  }
-
-  100%
-  {
-    opacity: 1;
-    transform: scale3d(1, 1, 1);
-  }
-
-}
-
-.js-animate--zoomin
-{
-  animation-name: zoomIn;
+.js-animate-scroll.js-animate-scroll--right {
+  animation-name: slideInRight;
 }

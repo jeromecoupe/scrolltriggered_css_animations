@@ -6,39 +6,16 @@ This is still a Work in Progress to a few things still need to be improved but t
 
 ## Goals
 
-- Throttled scroll events
-- Animations powered by data attributes
+- Use ES6 modules and feature detection as Cut the Mustard test
+- Use intersectionObserver
 - All elements displayed on pages if JS is not supported
 
 ## Usage
 
-Add `data-animation="animated"` attribute to any element you wish to animate and provide a `data-animation-type` attribute with one of the following values:
+Add a `js-animate-scroll` class to any element you wish to animate. Add a `js-animate-scroll--left` or `js-animate-scroll--right` class.
 
-- `slidefromleft`
-- `slidefromright`
-- `slidefromtop`
-- `slidefrombottom`
-- `zoomin`
-
-A `data-animation-delay="0.2s"` attribute can also be added if you need delays.
-
-- All animations play state are set to `paused` by default. They are switched to `running` via a `.js-animate--active` added via JS upon scroll and when the animated element is displayed in the viewport. If elements are in the viewport when the page is loaded, they are displayed immediately.
-- All animation classes are added via JS so elements will be displayed statically on the page if JS is not available.
+- All animations play state are set to `paused` by JavaScript, which mean they will run once onload when JavaScript is not supported. They are switched to `running` via JS upon scroll and when the animated element is displayed in the viewport. If elements are in the viewport when the page is loaded, animations will be triggered immediately.
 - Adding new animations types using CSS is really easy.
-
-## Sample HTML
-
-```html
-<div data-animation="animated" data-animation-type="zoomin">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas recusandae aliquam et aut eligendi, facere assumenda consectetur hic saepe molestias, optio atque placeat earum natus illum dignissimos sequi labore repudiandae.</p>
-</div>
-<p>Quam porro maxime distinctio nulla officiis ullam, iure eaque. Assumenda quasi repellendus sequi suscipit corporis expedita ea nostrum vero, minima debitis, provident accusantium modi! Facere eaque optio quidem quia placeat.</p>
-<ul>
-  <li data-animation="animated" data-animation-type="slidefromright">Beatae, nulla. Ipsum sit rem delectus commodi dolorem a temporibus</li>
-  <li data-animation="animated" data-animation-type="slidefromright" data-animation-delay="0.2s">Beatae, nulla. Ipsum sit rem delectus commodi dolorem a temporibus</li>
-  <li data-animation="animated" data-animation-type="slidefromright" data-animation-delay="0.4s">Beatae, nulla. Ipsum sit rem delectus commodi dolorem a temporibus</li>
-</ul>
-```
 
 ## Demo
 
