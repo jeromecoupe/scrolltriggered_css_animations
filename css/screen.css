@@ -39,7 +39,7 @@ slide in from left
   }
 }
 
-.js-scroll-animate.js-scroll-animate--slideinleft {
+.js-scroll-animate--slideinleft {
   animation-name: slideInLeft;
 }
 
@@ -62,7 +62,7 @@ slide in from right
   }
 }
 
-.js-scroll-animate.js-scroll-animate--slideinright {
+.js-scroll-animate--slideinright {
   animation-name: slideInRight;
 }
 

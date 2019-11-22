@@ -56,13 +56,6 @@ function init() {
     return false;
   }
 
-  animatedElements.forEach(el => {
-    el.classList.add();
-    let animClass = whichType(el.dataset.scrollAnimationType);
-    el.classList.add(animClass);
-    observer.observe(el);
-  });
-
   // loop through elements
   // add classes and observer
   animatedElements.forEach(el => {
