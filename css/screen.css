@@ -5,22 +5,18 @@
   overflow: hidden; /* hides offscreen animations */
 }
 
-.js-animate-scroll {
+.js-scroll-animate {
   animation-duration: 1s;
   animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
   animation-iteration-count: 1;
   animation-fill-mode: both;
-
-  background-color: red;
 }
 
 .is-paused {
-  visibility: hidden;
   animation-play-state: paused;
 }
 
 .is-running {
-  visibility: visible;
   animation-play-state: running;
 }
 
@@ -30,6 +26,10 @@ slide in from left
 @keyframes slideInLeft {
   0% {
     opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+
+  1% {
     transform: translate3d(-200px, 0, 0);
   }
 
@@ -39,7 +39,7 @@ slide in from left
   }
 }
 
-.js-animate-scroll.js-animate-scroll--left {
+.js-scroll-animate.js-scroll-animate--slideinleft {
   animation-name: slideInLeft;
 }
 
@@ -49,6 +49,10 @@ slide in from right
 @keyframes slideInRight {
   0% {
     opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+
+  1% {
     transform: translate3d(200px, 0, 0);
   }
 
@@ -58,6 +62,14 @@ slide in from right
   }
 }
 
-.js-animate-scroll.js-animate-scroll--right {
+.js-scroll-animate.js-scroll-animate--slideinright {
   animation-name: slideInRight;
+}
+
+/* ---------------------------------------
+=test
+--------------------------------------- */
+
+.test {
+  background-color: red;
 }

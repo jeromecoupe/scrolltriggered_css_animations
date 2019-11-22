@@ -12,7 +12,7 @@ This is still a Work in Progress to a few things still need to be improved but t
 
 ## Usage
 
-Add a `js-animate-scroll` class to any element you wish to animate. Add a `js-animate-scroll--left` or `js-animate-scroll--right` class.
+Add a `data-scroll-animation="true"` and either a  `data-scroll-animation-type="slideInLeft"` or `data-scroll-animation-type="slideInRight"` data attributes to elements you wish to animate.
 
 - All animations play state are set to `paused` by JavaScript, which mean they will run once onload when JavaScript is not supported. They are switched to `running` via JS upon scroll and when the animated element is displayed in the viewport. If elements are in the viewport when the page is loaded, animations will be triggered immediately.
 - Adding new animations types using CSS is really easy.

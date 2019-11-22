@@ -2,7 +2,9 @@
  * Variables
  */
 
-let animatedElements = document.querySelectorAll(".js-animate-scroll");
+const animatedElements = document.querySelectorAll("[data-scroll-animation]");
+
+const SCROLLANIMATE_CLASS = "js-scroll-animate";
 const RUNNING_CLASS = "is-running";
 const PAUSED_CLASS = "is-paused";
 
@@ -20,8 +22,7 @@ let observerOptions = {
 
 /**
  * Intersection Observer
- *
- * Swap classes
+ * Swap running / paused classes
  */
 let observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -29,11 +30,19 @@ let observer = new IntersectionObserver(entries => {
       entry.target.classList.remove(PAUSED_CLASS);
       entry.target.classList.add(RUNNING_CLASS);
       observer.unobserve(entry.target);
-    } else {
-      entry.target.classList.add(PAUSED_CLASS);
     }
   });
 }, observerOptions);
+
+/**
+ * Choose animation classes to apply
+ */
+
+function whichType(animationType) {
+  animationType = animationType.toLowerCase();
+  let cssClass = `js-scroll-animate--${animationType}`;
+  return cssClass;
+}
 
 /**
  * Initialize
@@ -47,8 +56,20 @@ function init() {
     return false;
   }
 
-  // loop through elements
   animatedElements.forEach(el => {
+    el.classList.add();
+    let animClass = whichType(el.dataset.scrollAnimationType);
+    el.classList.add(animClass);
+    observer.observe(el);
+  });
+
+  // loop through elements
+  // add classes and observer
+  animatedElements.forEach(el => {
+    el.classList.add(SCROLLANIMATE_CLASS);
+    el.classList.add(PAUSED_CLASS);
+    let animClass = whichType(el.dataset.scrollAnimationType);
+    el.classList.add(animClass);
     observer.observe(el);
   });
 }
