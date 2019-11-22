@@ -1,8 +1,6 @@
 # Scroll-triggered css animations
 
-I needed to trigger CSS animation onScroll for an upcoming project. I didn't want to rely on jQuery and needed something that would remain usable with JS turned off so I decided to have a shot at it. Here is the result.
-
-This is still a Work in Progress to a few things still need to be improved but the base is solid enough for me to put it out there.
+I needed to trigger CSS animation onScroll for a project. I didn't want to rely on jQuery and needed something that would remain usable with JS turned off so I decided to have a shot at it. Here is the result.
 
 ## Goals
 
@@ -12,11 +10,16 @@ This is still a Work in Progress to a few things still need to be improved but t
 
 ## Usage
 
-Add a `data-scroll-animation="true"` and either a  `data-scroll-animation-type="slideInLeft"` or `data-scroll-animation-type="slideInRight"` data attributes to elements you wish to animate.
+Add a `data-scroll-animation="true"` and either a  `data-scroll-animation-type="slideInLeft"` or `data-scroll-animation-type="slideInRight"` data attribute to elements you wish to animate.
 
 - All animations play state are set to `paused` by JavaScript, which mean they will run once onload when JavaScript is not supported. They are switched to `running` via JS upon scroll and when the animated element is displayed in the viewport. If elements are in the viewport when the page is loaded, animations will be triggered immediately.
 - Adding new animations types using CSS is really easy.
 
 ## Demo
 
-Here is a [small demo](http://jeromecoupe.github.com/onscroll_css_animations) (to be updated)
+Here is a [small demo](http://jeromecoupe.github.com/onscroll_css_animations).
+
+You can also download the project and then run:
+
+- `npm install`
+- `npm run watch`
