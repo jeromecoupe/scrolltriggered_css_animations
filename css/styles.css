@@ -1,0 +1,77 @@
+body {
+  overflow-x: hidden;
+}
+
+@keyframes slideFromBottom {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+  1% {
+    opacity: 0;
+    transform: translate3d(0, 50px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideFromRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+  1% {
+    opacity: 0;
+    transform: translate3d(50px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideFromLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+  1% {
+    opacity: 0;
+    transform: translate3d(-50px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+[data-scrollanimation] {
+  animation-play-state: paused;
+}
+
+[data-scrollanimation-running] {
+  animation-play-state: running;
+}
+
+.slideFromBottom {
+  animation-name: slideFromBottom;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+}
+
+.slideFromRight {
+  animation-name: slideFromRight;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+}
+
+.slideFromLeft {
+  animation-name: slideFromLeft;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+}

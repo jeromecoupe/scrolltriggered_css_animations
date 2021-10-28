@@ -1,22 +1,16 @@
 {
-  "name": "onscroll_css_animations",
-  "version": "1.0.0",
-  "description": "I needed to trigger CSS animation onScroll for an upcoming project. I didn't want to rely on jQuery and needed something that would remain usable with JS turned off so I decided to have a shot at it. Here is the result.",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jeromecoupe/onscroll_css_animations.git"
+  "name": "onscroll-css-animations",
+  "version": "1.0.1",
+  "description": "scroll triggred animations with IntersectionObserver.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "browser-sync start --server './' --files './'"
   },
   "keywords": [],
-  "author": "Jérôme Coupé",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jeromecoupe/onscroll_css_animations/issues"
-  },
-  "homepage": "https://github.com/jeromecoupe/onscroll_css_animations#readme",
-  "scripts": {
-    "watch": "browser-sync start --server ./ --files ./**/*"
-  },
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
-    "browser-sync": "^2.26.7"
+    "browser-sync": "^2.27.7"
   }
 }
