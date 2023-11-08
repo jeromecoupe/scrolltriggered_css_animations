@@ -4,7 +4,7 @@
 - Use intersectionObserver
 - Elements displayed on pages if JS is not supported
 
-[Demo](https://jeromecoupe.github.io/onscroll_css_animations/)
+[Demo](https://jeromecoupe.github.io/scrolltriggered_css_animations/)
 
 ## Usage
 
