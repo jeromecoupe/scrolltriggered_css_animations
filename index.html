@@ -1,26 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scroll-triggered animations</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <script type="module" src="js/main.js"></script>
-</head>
-<body>
-  <h1>Scroll triggered animations</h1>
-  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis esse exercitationem doloribus dolorum unde, quae facilis! Iste, ratione voluptate sint vitae velit sed sunt laboriosam reprehenderit similique veniam? Eum, iure!</p>
-  <h2>These are fun</h2>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea perferendis ducimus rem excepturi aut nostrum beatae doloremque libero expedita quos? Perspiciatis expedita totam ab eius voluptate autem molestiae aut officiis!</p>
-  <h2>And IntersectionObserver</h2>
-  <p data-scrollanimation="true" data-scrollanimation-type="slideFromBottom">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus ea at mollitia excepturi animi temporibus odio necessitatibus iure officia laboriosam! Officia nesciunt blanditiis totam quia facere obcaecati fugiat deleniti beatae?</p>
-  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus ea at mollitia excepturi animi temporibus odio necessitatibus iure officia laboriosam! Officia nesciunt blanditiis totam quia facere obcaecati fugiat deleniti beatae?</p>
-  <h2>Makes them easy and performant</h2>
-  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus ea at mollitia excepturi animi temporibus odio necessitatibus iure officia laboriosam! Officia nesciunt blanditiis totam quia facere obcaecati fugiat deleniti beatae?</p>
-  <p data-scrollanimation="true"  data-scrollanimation-type="slideFromBottom">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus ea at mollitia excepturi animi temporibus odio necessitatibus iure officia laboriosam! Officia nesciunt blanditiis totam quia facere obcaecati fugiat deleniti beatae?</p>
-  <p data-scrollanimation="true"  data-scrollanimation-type="slideFromLeft"  data-scrollanimation-delay="0.2s">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus ea at mollitia excepturi animi temporibus odio necessitatibus iure officia laboriosam! Officia nesciunt blanditiis totam quia facere obcaecati fugiat deleniti beatae?</p>
-  <p data-scrollanimation="true"  data-scrollanimation-type="slideFromRight"  data-scrollanimation-delay="0.3s">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus ea at mollitia excepturi animi temporibus odio necessitatibus iure officia laboriosam! Officia nesciunt blanditiis totam quia facere obcaecati fugiat deleniti beatae?</p>
-  <p data-scrollanimation="true"  data-scrollanimation-type="slideFromLeft"  data-scrollanimation-delay="0.4s">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus ea at mollitia excepturi animi temporibus odio necessitatibus iure officia laboriosam! Officia nesciunt blanditiis totam quia facere obcaecati fugiat deleniti beatae?</p>
-  <p data-scrollanimation="true"  data-scrollanimation-type="slideFromRight"  data-scrollanimation-delay="0.5s">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus ea at mollitia excepturi animi temporibus odio necessitatibus iure officia laboriosam! Officia nesciunt blanditiis totam quia facere obcaecati fugiat deleniti beatae?</p>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scroll-triggered animations</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script type="module" src="js/main.js"></script>
+  </head>
+
+  <body>
+    <h1>Scroll triggered animations</h1>
+    <p>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis esse
+      exercitationem doloribus dolorum unde, quae facilis! Iste, ratione
+      voluptate sint vitae velit sed sunt laboriosam reprehenderit similique
+      veniam? Eum, iure!
+    </p>
+    <h2>These are fun</h2>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea perferendis
+      ducimus rem excepturi aut nostrum beatae doloremque libero expedita quos?
+      Perspiciatis expedita totam ab eius voluptate autem molestiae aut
+      officiis!
+    </p>
+    <h2>And IntersectionObserver</h2>
+    <p data-scrollanimation data-scrollanimation-type="slideFromBottom">
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus ea at
+      mollitia excepturi animi temporibus odio necessitatibus iure officia
+      laboriosam! Officia nesciunt blanditiis totam quia facere obcaecati fugiat
+      deleniti beatae?
+    </p>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus ea at
+      mollitia excepturi animi temporibus odio necessitatibus iure officia
+      laboriosam! Officia nesciunt blanditiis totam quia facere obcaecati fugiat
+      deleniti beatae?
+    </p>
+    <h2>Makes them easy and performant</h2>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus ea at
+      mollitia excepturi animi temporibus odio necessitatibus iure officia
+      laboriosam! Officia nesciunt blanditiis totam quia facere obcaecati fugiat
+      deleniti beatae?
+    </p>
+    <p data-scrollanimation data-scrollanimation-type="slideFromBottom">
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus ea at
+      mollitia excepturi animi temporibus odio necessitatibus iure officia
+      laboriosam! Officia nesciunt blanditiis totam quia facere obcaecati fugiat
+      deleniti beatae?
+    </p>
+    <p
+      data-scrollanimation
+      data-scrollanimation-type="slideFromLeft"
+      data-scrollanimation-delay="0.2s"
+    >
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus ea at
+      mollitia excepturi animi temporibus odio necessitatibus iure officia
+      laboriosam! Officia nesciunt blanditiis totam quia facere obcaecati fugiat
+      deleniti beatae?
+    </p>
+    <p
+      data-scrollanimation
+      data-scrollanimation-type="slideFromRight"
+      data-scrollanimation-delay="0.3s"
+    >
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus ea at
+      mollitia excepturi animi temporibus odio necessitatibus iure officia
+      laboriosam! Officia nesciunt blanditiis totam quia facere obcaecati fugiat
+      deleniti beatae?
+    </p>
+    <p
+      data-scrollanimation
+      data-scrollanimation-type="slideFromLeft"
+      data-scrollanimation-delay="0.4s"
+    >
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus ea at
+      mollitia excepturi animi temporibus odio necessitatibus iure officia
+      laboriosam! Officia nesciunt blanditiis totam quia facere obcaecati fugiat
+      deleniti beatae?
+    </p>
+    <p
+      data-scrollanimation
+      data-scrollanimation-type="slideFromRight"
+      data-scrollanimation-delay="0.5s"
+    >
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus ea at
+      mollitia excepturi animi temporibus odio necessitatibus iure officia
+      laboriosam! Officia nesciunt blanditiis totam quia facere obcaecati fugiat
+      deleniti beatae?
+    </p>
+  </body>
 </html>
