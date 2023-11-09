@@ -1,11 +1,29 @@
+/* =================================================
+=variables
+================================================= */
+
 :root {
-  --scroll-transforms-length: 36px;
+  --scroll-transforms-distance: 36px;
 }
+
+/* =================================================
+=body
+================================================= */
 
 body {
   /* prevent horizontal scrollbars */
   overflow-x: hidden;
 }
+
+/* =================================================
+=animations
+================================================= */
+
+/*
+- all animations start by having a state where the element is not moved, we need that so that collisions are detected without the element being moved first
+- at 1%, the element is moved in a position where it can be animated back
+- at 100% the element is in its final state
+*/
 
 @keyframes slideFromBottom {
   0% {
@@ -14,7 +32,7 @@ body {
   }
   1% {
     opacity: 0;
-    transform: translate3d(0, var(--scroll-transforms-length), 0);
+    transform: translate3d(0, var(--scroll-transforms-distance), 0);
   }
   100% {
     opacity: 1;
@@ -29,7 +47,7 @@ body {
   }
   1% {
     opacity: 0;
-    transform: translate3d(var(--scroll-transforms-length), 0, 0);
+    transform: translate3d(var(--scroll-transforms-distance), 0, 0);
   }
   100% {
     opacity: 1;
@@ -44,13 +62,17 @@ body {
   }
   1% {
     opacity: 0;
-    transform: translate3d(calc(var(--scroll-transforms-length) * -1), 0, 0);
+    transform: translate3d(calc(var(--scroll-transforms-distance) * -1), 0, 0);
   }
   100% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
 }
+
+/* =================================================
+=animation classes
+================================================= */
 
 .slideFromBottom {
   animation-name: slideFromBottom;

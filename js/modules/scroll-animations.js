@@ -1,19 +1,18 @@
-// elements à animer
+/**
+ * Variables
+ */
+
+// Element to be animated (data attribute)
 const animatedElements = document.querySelectorAll("[data-scrollanimation]");
 
-// observer threshold
+// Observer threshold
 const observerThreshold = 0.5;
 
-/**
- * IntersectionObserver détecte des collisions entre un élément racine et un élément cible.
- * Le mécanisme est analogue à celui de deux puces RFID attachées aux éléments, dont on détecte la collision
- * - racine: définie dans les options d'IntersectionObserver (root = viewport)
- * - cible: le ou les éléments auxquels sont attachés la "puce RFID" d'IntersectionObserver
- */
+// Observer options
 const observerOptions = {
-  // root: null - défini le viewport comme élément racine
-  // threshold 0.5 - 50% de l'objet cible doit être en collision avec l'élément racine
+  // root: null - the root element is the viewport
   root: null,
+  // threshold 0.5 - at least 50% of the observed objects need to collide with the root
   threshold: observerThreshold,
 };
 
@@ -23,7 +22,7 @@ const observerOptions = {
  */
 function addAnimationClasses(el) {
   // prepare values
-  let animationClass = el.dataset.scrollanimationType;
+  let animationClass = el.dataset.scrollanimationClass;
   let delay = el.dataset.scrollanimationDelay;
   // apply values
   el.classList.add(animationClass);
@@ -39,36 +38,59 @@ function playAnimation(el) {
   el.style.animationPlayState = "running";
 }
 
+/**
+ * Handle Intersections
+ * @params {IntersectionObserverEntries} observerEntries - list of observed entries
+ * @params {Observer} observer - intersectionObserver
+ */
+function handleIntersections(observerEntries, observer) {
+  // WARNING: intersectionObserver is like an RFID chip attached to elements
+  // if you need to target the element to which the RFID chip is attached, you need to use `entry.target` and not `entry` itself.
+  observerEntries.forEach(function (entry) {
+    // if intersectionRatio > threshold (element visible)
+    // do nothing and remove the observer
+    if (entry.intersectionRatio > observerThreshold) {
+      observer.unobserve(entry.target);
+    }
+    // if intersectionRatio > threshold (element not visible)
+    // add animation classes and pause animations
+    if (entry.intersectionRatio < observerThreshold) {
+      addAnimationClasses(entry.target);
+    }
+    // if element is intersecting
+    // play animations
+    if (entry.isIntersecting) {
+      playAnimation(entry.target);
+      observer.unobserve(entry.target);
+    }
+  });
+}
+
 function init() {
+  // if IntersectionObserver is not supported, bail out
   if (!"IntersectionObserver" in window) return;
 
   /**
-   * Création d'observer: prend une fonction de callback et des options
+   * IntersectionObserver detects collisions between a root elmement and target elements
+   * The mecanism is similar to RFID chips attached to elements adn the root.
+   * IntersectionObserver detects collisions between both RFID chips.
+   * <https://developer.mozilla.org/fr/docs/Web/API/Intersection_Observer_API>
    *
-   * - callback (function):
-   *    - si intersection ratio > threshold: on supprime l'observer et on ne fait rien
-   *    - si intersetcion ratio < threshold: on appliquer les classes d'animation et on pause
-   *    - si intersection: on passe l'animation en play et on supprime l'observer
-   * - option: cf supra (racine et threshold)
+   * When created, IntersectionObserver takes two parameters
+   * - A callback function used by the observer. The following parameters get passed to it.
+   *   - observed entries
+   *   - the observer
+   * - An options object: cf supra (root and threshold)
+   *   - root: the element with which oberverEntries will collide (null = viewport)
+   *   - threshold: the proportion of the entries that need to collide with the root
+   *                for the collision to be observed
    */
-  const observer = new IntersectionObserver(function (observerEntries) {
-    // attention intersection observer ne s'applique pas directement à des éléments (comme une puce RFID). Si vous voulez cibler l'élément auquel est attachée la puce RFID, il faut utiliser entry.target
-    observerEntries.forEach(function (entry) {
-      if (entry.intersectionRatio > observerThreshold) {
-        observer.unobserve(entry.target);
-      }
-      if (entry.intersectionRatio < observerThreshold) {
-        addAnimationClasses(entry.target);
-      }
-      if (entry.isIntersecting) {
-        playAnimation(entry.target);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
+  const observer = new IntersectionObserver(
+    handleIntersections,
+    observerOptions
+  );
 
   /**
-   * ajout des classes d'animation
    * attacher un observer à chaque element
    */
   animatedElements.forEach(function (el) {
