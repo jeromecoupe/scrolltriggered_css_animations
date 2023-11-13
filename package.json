@@ -4,13 +4,13 @@
   "description": "scroll triggred animations with IntersectionObserver.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "browser-sync start --server './' --files './'"
+    "server": "browser-sync start --server \"./\" --files \"./index.html\" \"./css/**/*\" \"./js/**/*\"",
+    "dev": "npm run server"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "browser-sync": "^2.27.7"
+    "browser-sync": "^2.29.3"
   }
 }
