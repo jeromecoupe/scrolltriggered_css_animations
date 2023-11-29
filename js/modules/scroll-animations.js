@@ -21,7 +21,7 @@ const observerOptions = {
  * @param {DOM node} el - target DOM node
  */
 function addAnimationClasses(el) {
-  // prepare values
+  // prepare values (data atrributes, could work with CSS custom properties)
   let animationClass = el.dataset.scrollanimationClass;
   let delay = el.dataset.scrollanimationDelay;
   // apply values
